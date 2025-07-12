@@ -1,0 +1,204 @@
+ body {
+    background-color: #f0f0f0;
+    color: #000;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    transition: background-color 0.3s, color 0.3s;
+
+} 
+
+    #expense-container, #submitbtn, #cancelbtn {
+    display: none;
+}
+
+
+.change-mode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-mode i {
+    font-size: 25px;
+    color: white;
+}
+
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+#incomeform{
+    display:flex;
+    flex-direction: column;
+    align-items: center;    
+    gap:20px;
+    padding: 50px;
+    position: relative;
+    right:55px;
+}
+
+#incomebox{
+    width: 170px;
+    height: 35px;
+    text-align: left;
+    font-size: 1.5rem; 
+    padding: 4px;
+    border: 5px solid black;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.income{
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+}
+
+
+
+/* .Econtainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start; 
+    gap: 80px;
+    font-size: 1.5rem;
+    border: 2px solid black;
+}
+
+.dc{
+    border: 2px solid black;
+    height: 80px;
+    row-gap: 20px;
+} 
+
+.ia{
+    border: 2px solid black;
+    height: 80px;
+}     */
+
+.Econtainer {
+    display: flex;
+    justify-content: center;
+    gap: 30px; 
+    padding: 30px; 
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    font-size: 1.5rem;
+}
+
+.dc, .ia {
+    display: flex;
+    flex-direction: column;  
+}
+
+/* .date{
+    position: relative;
+    right: 350px;
+}
+
+#datebox{
+    height: 33px;
+    width: 200px;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    border-radius: 25px 25px 25px 25px;
+    padding: 9px;
+}
+
+.category{
+    position: relative;
+    right: 350px;
+}
+
+#categorybox{
+    height: 55px;
+    width: 200px;
+    font-size: 1.5rem;
+    border-radius: 25px 25px 25px 25px;
+    padding: 9px;
+}
+
+.item{
+    position: relative;
+    left: 350px;
+    bottom: px;
+}
+
+#itembox{
+    height: 33px;
+    width: 200px;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    border-radius: 25px 25px 25px 25px;
+    padding: 9px;
+    position: relative;
+    left: 550px;
+}
+.amount{
+    position: relative;
+    left: 350px;
+}
+
+#amountbox{
+    height: 33px;
+    width: 300px;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    border-radius: 25px 25px 25px 25px;
+    padding: 9px;
+    position: relative;
+    left: 550px;
+} */
+
+ #button-grp {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding-top: 15px;
+}
+
+.cancel-btn ,.submit-btn{
+    display : inline-block;
+
+
+}
+
+.Econtainer {
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* Space between the two tables */
+    padding: 30px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    font-size: 1.5rem;
+}
+
+.form-table {
+    border-spacing: 20px 15px; /* spacing between rows and columns inside each table */
+}
+
+.form-table label {
+    text-align: right;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.form-table input,
+.form-table select {
+    height: 35px;
+    width: 200px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    padding: 5px 15px;
+}
