@@ -38,7 +38,6 @@ cbtn.addEventListener('click', () => {
     sbtn.style.display = 'none';
     cbtn.style.display = 'none';
     expensebtn.style.display = 'block';
-    // Clear form fields when canceling
     clearExpenseForm();
 });
 
@@ -123,18 +122,14 @@ sbtn.addEventListener('click', () => {
 
     tbody.appendChild(newRow);
 
-    // Clear form fields
     clearExpenseForm();
-    
-    // Hide form and show add button
+
     expenseContainer.style.display = 'none';
     sbtn.style.display = 'none';
     cbtn.style.display = 'none';
     expensebtn.style.display = 'block';
 
-    // Update totals
     updateTotals();
 });
 
-// Add event listener for income input to update totals when income changes
 document.getElementById('incomebox').addEventListener('input', updateTotals);
