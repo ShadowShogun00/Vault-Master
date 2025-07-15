@@ -1,5 +1,4 @@
-let totalexpense =0;
-
+let totalexpense = 0;
 
 const modeButton = document.querySelector('.change-mode');
 const modeIcon = modeButton.querySelector('i');
@@ -7,7 +6,6 @@ const modeIcon = modeButton.querySelector('i');
 let isDarkMode = false;
 
 modeButton.addEventListener('click', () => {
-
     document.body.classList.toggle('dark-mode');
 
     if (!isDarkMode) {
@@ -29,8 +27,8 @@ const cbtn = document.getElementById('cancelbtn');
 const sbtn = document.getElementById('submitbtn');
 
 expensebtn.addEventListener('click', () => {
-    expenseContainer.style.display = 'block';
-    cbtn.style.display ='block';
+    expenseContainer.style.display = 'grid';
+    cbtn.style.display = 'block';
     sbtn.style.display = 'block';
     expensebtn.style.display = 'none';
 });
@@ -40,9 +38,40 @@ cbtn.addEventListener('click', () => {
     sbtn.style.display = 'none';
     cbtn.style.display = 'none';
     expensebtn.style.display = 'block';
+    // Clear form fields when canceling
+    clearExpenseForm();
 });
 
-    sbtn.addEventListener('click', () => {
+function clearExpenseForm() {
+    document.getElementById('datebox').value = '';
+    document.getElementById('categorybox').value = '0';
+    document.getElementById('itembox').value = '';
+    document.getElementById('amountbox').value = '';
+}
+
+function updateTotals() {
+    const balancecell = document.getElementById('rbalance');
+    const expensecell = document.getElementById('texpense');
+    const income = document.getElementById('incomebox').value;
+    const cleanIncome = income.replace(/[₹\s]/g, '');
+    const cincome = parseFloat(cleanIncome) || 0;
+
+    const tbody = document.getElementById('expense-body');
+    const rows = tbody.rows;
+    let total = 0;
+    
+    for(let i = 0; i < rows.length; i++){
+        const amountCell = rows[i].cells[3];
+        const amount = parseFloat(amountCell.innerText) || 0;
+        total += amount;
+    }
+    
+    expensecell.innerText = total;
+    let bcell = cincome - total;
+    balancecell.innerText = bcell;
+}
+
+sbtn.addEventListener('click', () => {
     const tbody = document.getElementById('expense-body');
     const date = document.getElementById('datebox').value;
     const categorySelect = document.getElementById('categorybox');
@@ -67,6 +96,11 @@ cbtn.addEventListener('click', () => {
         alert('Please enter an amount');
         return;
     }
+    
+    if (isNaN(parseFloat(amount))) {
+        alert('Please enter a valid amount');
+        return;
+    }
 
     const newRow = document.createElement('tr');
 
@@ -89,31 +123,18 @@ cbtn.addEventListener('click', () => {
 
     tbody.appendChild(newRow);
 
-    document.getElementById('date').value = '';
-    categorySelect.value ='0';
-    document.getElementById('item').value = '';
-    document.getElementById('amount').value = '';
+    // Clear form fields
+    clearExpenseForm();
     
+    // Hide form and show add button
     expenseContainer.style.display = 'none';
     sbtn.style.display = 'none';
     cbtn.style.display = 'none';
     expensebtn.style.display = 'block';
 
-    const balancecell = document.getElementById('rbalance');
-    const expensecell = document.getElementById('texpense');
-    const income = document.getElementById('income').value;
-    const cincome = parseFloat(income);
+    // Update totals
+    updateTotals();
+});
 
-    const rows = tbody.rows;
-    let total = 0;
-    for(let i = 0; i< rows.length; i++){
-        const amountCell = rows[i].cells[3];
-        const amount = parseFloat(amountCell.innerText);
-        total += amount;
-    }
-    expensecell.innerText = total;
-    let bcell;
-    bcell = cincome - total;
-    balancecell.innerText = bcell;
-
-    });
+// Add event listener for income input to update totals when income changes
+document.getElementById('incomebox').addEventListener('input', updateTotals);
